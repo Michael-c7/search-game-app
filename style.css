@@ -1,0 +1,173 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&display=swap');
+
+:root {
+    --blue:#4C7EFC;
+    --light-gray:#F3F2F2;
+    --light-black:#342E2E;
+
+    --gradient-light-blue:#CBDAFB;
+    --gradient-light-blue-2:#A4C2FC;
+    --gradient-light-blue:linear-gradient(to right, #cbdafb,  #a4c2fc);
+}
+
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    padding:0;
+    margin:0;
+}
+
+
+body {
+    font-family:'Open Sans', Arial, Helvetica, sans-serif;
+    line-height: 1.2;
+    background:var(--gradient-light-blue);
+}
+
+ul {
+    list-style-type: none;
+}
+
+
+
+
+
+
+
+
+
+/*search section*/
+.search-container {
+    background:#fff;
+    width:25rem;
+    height:4rem;
+    margin:2rem auto 0 auto;
+    display:flex;
+    padding:0.5rem;
+    border-radius: 10px;
+    justify-content: space-between;
+    filter:drop-shadow(3px 0px 10px rgba(34, 34, 34, 0.2));
+}
+
+
+.search-input {
+    border:none;
+    outline:0;
+    flex:1;
+    font-size:1.25rem;
+}
+
+.search-input::placeholder {
+    color:rgb(180, 180, 180);
+}
+
+.search-btn {
+    border:none;
+    background-color: var(--blue);
+    color:#fff;
+    width:3rem;
+    border-radius: 10px;
+    font-size:1.35rem;
+    transition: opacity 0.25s ease;
+    margin-left:2px;
+}
+
+
+.search-btn:hover {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.search-btn:active {
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+/*card section*/
+.card-section {
+    width:80%;
+    margin:3rem auto 0 auto;
+}
+
+.card-list {
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: center;
+
+}
+
+
+.card {
+    background:#fff;
+    width:13rem;
+    height:15rem;
+    position: relative;
+    text-align: center;
+    display:grid;
+    grid-template-rows: 2fr 1fr;
+    transition: transform 0.15s ease;
+    margin:0.5rem;
+    border-radius: 2px;
+    filter:drop-shadow(2px 4px 8px #1a1a1a20);
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+
+.card__header {
+    width:100%;
+    background-color:#fff;
+
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    border-radius: 2px 2px 0 0;
+}
+
+.card__header__img {
+    width:80px;
+    height:80px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 50%;
+}
+
+.card__game-title {
+    font-size: 1.15rem;
+    margin-top:0.5rem;
+    width:20ch;
+}
+
+
+.card__learn-more {
+    background:var(--light-gray);
+    width:100%;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items:center;
+    border-radius: 0 0 2px 2px;
+}
+
+.card__learn-more-btn {
+    border:none;
+    background:var(--light-black);
+    color:#fff;
+    font-size:1rem;
+    padding:0.5rem 0.75rem;
+    cursor: pointer;
+    border-radius: 5px;
+}
