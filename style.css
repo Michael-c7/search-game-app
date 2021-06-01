@@ -38,6 +38,53 @@ ul {
 
 
 
+
+
+
+/*popup section*/
+
+.popup-container {
+    background:rgba(30, 30, 30, 0.35);
+    position: absolute;
+    top:0;
+    width:100vh;
+    height:100vh;
+
+    z-index:-999;
+
+    display:none;
+    justify-content: center;
+    align-items:center;
+}
+
+
+.popup {
+    background:#fff;
+    position: relative;
+    width:50rem;
+    height:30rem;
+}
+
+/*apply to popup-container class
+when you click the learn more btn*/
+.popup-show {
+    display:flex;
+    z-index:999;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*search section*/
 .search-container {
     background:#fff;
