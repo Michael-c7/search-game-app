@@ -13,22 +13,31 @@
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     </head>
-    <body>
+    <body class="disable-scrollbar">
 
         <!-- popup-show -->
-        <div class="popup-container">
+        <div class="popup-container popup-show">
             <section class="popup">
+                <div class="popup__info">
+                   <h2 class="popup__info__heading">Grand Theft Auto V</h2>
+                   <video width="250px" class="popup__info__video" src="./videos/movie_max.mp4" controls></video>
+                    <div>
+                        <div class="popup__info__rating">Rating: Mature</div>
+                        <div class="popup__info__release-date">Release Date: 2021</div>
+                    </div>
+
+                    <div class="popup__info__genres">Action, adventure, RPG</div>
+                    <div class="popup__info__platforms">Platforms: ps4, ps4, pc, xbox 360</div>
+                    <div class="popup__info__developers">Developers: Rockstar North, Rockstar South</div>
+                    <p class="popup__info__description">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos,
+                        alias eos amet error assumenda nobis ipsum numquam dolor quibusdam.
+                    </p>
+                </div>
+
                 <button class="popup__close-btn">
                     <i class="fa fa-times" aria-hidden="true"></i>
                 </button>
-
-                <div class="popup__info">
-                    <p>
-                        figure out what data to put here.
-                        I think I want a movie trailer then
-                        release date, ect...
-                    </p>
-                </div>
             </section>
         </div>
 

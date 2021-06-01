@@ -42,14 +42,12 @@ ul {
 
 
 /*popup section*/
-
 .popup-container {
     background:rgba(30, 30, 30, 0.35);
     position: absolute;
-    top:0;
     width:100vw;
     height:100vh;
-
+    top:0;
     z-index:-999;
 
     display:none;
@@ -61,8 +59,9 @@ ul {
 .popup {
     background:#fff;
     position: relative;
-    width:50rem;
-    height:30rem;
+    width:60rem;
+    height:40rem;
+    border-radius: 15px;
 }
 
 /*apply to popup-container class

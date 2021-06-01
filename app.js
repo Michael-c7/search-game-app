@@ -4,10 +4,10 @@ let searchTerm = "call of duty";
 // cached variables
 let popupContainer = document.querySelector(".popup-container");
 let popup = document.querySelector(".popup");
+let popupCloseBtn = document.querySelector(".popup__close-btn");
 let cardList = document.querySelector(".card-list");
 const searchBtn = document.querySelector(".search-btn");
-let searchInput = document.querySelector(".search-input")
-
+let searchInput = document.querySelector(".search-input");
 /*
 documentation
 
@@ -64,7 +64,7 @@ let renderCards = games => {
 }
 
 // render to DOM
-getListOfGames().then(data => renderCards(data))
+// getListOfGames().then(data => renderCards(data))
 
 
 
@@ -81,37 +81,64 @@ let openPopup = _ => {
     }
 }
 
+let closePopup = _ => {
+    if(event.target.closest(".popup__close-btn")) {
+        popupContainer.classList.remove("popup-show")
+        document.body.classList.remove("disable-scrollbar")
+    }
+}
+
+
+popupCloseBtn.addEventListener("click", closePopup)
+
+
 /*
 - get current game ID
 - open the popup
 - get the additonal game info and apply it to the popup
 */
 cardList.addEventListener("click", event => {
-    // getCurrentCardId()
     openPopup()
+    // getAdditionalInfo(getCurrentCardId())
 })
 
 
+let getAdditionalInfo = gameId => {
+    // search for a specific game
+    gameId = 3498;
 
-let getAdditionalInfo = _ => {
+    let getInfo = _ => {
+        fetch(`https://api.rawg.io/api/games/${gameId}?key=${apiKey}`)
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+        })
+    }
+    getInfo()
     
+
+
+
+
+    // get game trailer
+    // https://api.rawg.io/api/games/{id}/movies
+
+    let getGameTrailerInfo = _ => {
+        return fetch(`https://api.rawg.io/api/games/${gameId}/movies?key=${apiKey}`)
+        .then(res => res.json())
+        .then(data => {
+            return {
+                trailer:data.results[0].data.max,
+                trailerName:data.results[0].name,
+                trailerThumbnail:data.results[0].preview
+                }
+        });
+    }
+
+    // getGameTrailerInfo().then(item => console.log(item))
 }
 
-// search for a specific game
-let gameId = 3498;
-    // fetch(`https://api.rawg.io/api/games/${gameId}?key=${apiKey}`)
-    // .then(res => res.json())
-    // .then(data => {
-    //     console.log(data)
-    // })
+
+// getAdditionalInfo()
 
 
-
-// get game trailer
-// https://api.rawg.io/api/games/{id}/movies
-
-// fetch(`https://api.rawg.io/api/games/${gameId}/movies?key=${apiKey}`)
-// .then(res => res.json())
-// .then(data => {
-//     console.log(data)
-// })
