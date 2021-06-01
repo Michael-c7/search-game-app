@@ -72,6 +72,14 @@ when you click the learn more btn*/
     z-index:999;
 }
 
+.disable-scrollbar {
+    overflow: hidden;
+}
+
+.blur {
+    filter:blur(10px);
+}
+
 
 
 

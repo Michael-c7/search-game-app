@@ -5,15 +5,24 @@ let searchTerm = "call of duty";
 let popupContainer = document.querySelector(".popup-container");
 let popup = document.querySelector(".popup");
 let cardList = document.querySelector(".card-list");
-
+const searchBtn = document.querySelector(".search-btn");
+let searchInput = document.querySelector(".search-input")
 
 /*
-Links
+documentation
 
 https://rawg.io/apidocs
 https://api.rawg.io/docs/#tag/games
 https://rawg.io/
 */
+
+
+// searchBtn.addEventListener("click", _ => {
+//     searchInput.value = searchTerm;
+//     console.log(searchInput.value, searchTerm)
+// })
+
+
 
 // get a list of games
 let getListOfGames = _ => {
@@ -55,10 +64,38 @@ let renderCards = games => {
 }
 
 // render to DOM
-// getListOfGames().then(data => renderCards(data))
+getListOfGames().then(data => renderCards(data))
 
 
 
+let getCurrentCardId = _ => {
+    if(event.target.closest(".card__learn-more-btn")) {
+        return Number(event.target.parentElement.parentElement.id);
+    }
+}
+
+let openPopup = _ => {
+    if(event.target.closest(".card__learn-more-btn")) {
+        popupContainer.classList.add("popup-show")
+        document.body.classList.add("disable-scrollbar")
+    }
+}
+
+/*
+- get current game ID
+- open the popup
+- get the additonal game info and apply it to the popup
+*/
+cardList.addEventListener("click", event => {
+    // getCurrentCardId()
+    openPopup()
+})
+
+
+
+let getAdditionalInfo = _ => {
+    
+}
 
 // search for a specific game
 let gameId = 3498;
@@ -78,25 +115,3 @@ let gameId = 3498;
 // .then(data => {
 //     console.log(data)
 // })
-
-
-
-
-
-
-/*
-card HTML
-
-<li class="card">
-    <header class="card__header">
-            <img class="card__header__img" src="./images/cake-test-image.jpg" alt="cover image">
-            <div class="card__info">
-                <h2 class="card__game-title">bioshock 2</h2>
-                <div class="card__score">65 / 100</div>
-            </div>
-    </header>
-    <div class="card__learn-more">
-        <button class="card__learn-more-btn">Learn More</button>
-    </div>
-</li>
-*/
