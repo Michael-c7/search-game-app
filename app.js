@@ -1,5 +1,4 @@
 import apiKey from "./apiKey.js"
-let searchTerm = "call of duty";
 
 // cached variables
 let popupContainer = document.querySelector(".popup-container");
@@ -8,6 +7,10 @@ let popupCloseBtn = document.querySelector(".popup__close-btn");
 let cardList = document.querySelector(".card-list");
 const searchBtn = document.querySelector(".search-btn");
 let searchInput = document.querySelector(".search-input");
+
+// variables
+let searchTerm = searchInput.value;
+let currentId = 0;
 /*
 documentation
 
@@ -17,10 +20,17 @@ https://rawg.io/
 */
 
 
-// searchBtn.addEventListener("click", _ => {
-//     searchInput.value = searchTerm;
-//     console.log(searchInput.value, searchTerm)
-// })
+/*
+- get search term from the input
+- misc
+*/
+
+// get that on click of the search btn
+// searchTerm = searchInput.value
+
+
+
+
 
 
 
@@ -48,7 +58,7 @@ let renderCards = games => {
         markup = `
         <li class="card" id=${game.id}>
             <header class="card__header">
-                    <img class="card__header__img" src="${game.thumbnail}">
+                    <img class="card__header__img" src="${game.thumbnail || "./images/default-image.jpg"}">
                     <div class="card__info">
                         <h2 class="card__game-title">${game.name}</h2>
                         <div class="card__score">${game.score} / 100</div>
@@ -63,11 +73,32 @@ let renderCards = games => {
     });
 }
 
-let getCurrentCardId = _ => {
-    if(event.target.closest(".card__learn-more-btn")) {
-        return Number(event.target.parentElement.parentElement.id);
+// initial render of the cards
+getListOfGames().then(data => renderCards(data))
+
+
+searchBtn.addEventListener("click", _ => {
+    searchTerm = searchInput.value;
+    console.log(searchInput.value, searchTerm)
+    // clear
+    cardList.innerHTML = "";
+    // re-render
+    getListOfGames().then(data => renderCards(data))
+});
+
+
+cardList.addEventListener("click", event => {
+    let getCurrentCardId = _ => {
+        if(event.target.closest(".card__learn-more-btn")) {
+            return Number(event.target.parentElement.parentElement.id);
+        }
     }
-}
+    currentId = getCurrentCardId()
+});
+
+
+
+
 
 let openPopup = _ => {
     if(event.target.closest(".card__learn-more-btn")) {
@@ -87,20 +118,16 @@ let closePopup = _ => {
 
 
 
-/*
-- get current game ID
-- open the popup
-- get the additonal game info and apply it to the popup
-*/
+
 cardList.addEventListener("click", event => {
     openPopup()
-    // getAdditionalInfo(getCurrentCardId())
+    // getAdditionalInfo(getCurrentCardId(currentId))
 })
 
 
 let getAdditionalInfo = gameId => {
     // search for a specific game
-    gameId = 19476;
+    // gameId = 19476;
 
     let getInfo = _ => {
         return fetch(`https://api.rawg.io/api/games/${gameId}?key=${apiKey}`)
@@ -203,11 +230,10 @@ let renderPopupInfo = popupInfo => {
 
 
 let render = () => {
-    getListOfGames().then(data => renderCards(data))
-    renderPopupInfo(getAdditionalInfo(865))
+    renderPopupInfo(getAdditionalInfo(currentId))
 }
 
-// render()
-
-document.querySelector(".popup__close-btn").addEventListener("click", closePopup)
-
+cardList.addEventListener("click", event => {
+    render()
+    document.querySelector(".popup__close-btn").addEventListener("click", closePopup)
+})
