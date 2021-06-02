@@ -62,7 +62,61 @@ ul {
     width:60rem;
     height:40rem;
     border-radius: 15px;
+
+    display:grid;
+    grid-template-columns: 1fr 2fr 1fr;
 }
+
+.popup__info {
+    justify-self: center;
+    grid-column: 2/3;
+    line-height: 1.5;
+}
+
+.popup__info__heading {
+    margin:1rem 0;
+    text-align: center;
+    line-height: 1;
+}
+
+.popup__info__video {
+    width:100%;
+}
+
+.popup__info__data {
+    display:flex;
+    justify-content: space-between;
+}
+
+.popup__info__description {
+    margin:0.75rem 0;
+    height:10rem;
+    overflow: auto;
+}
+
+
+.popup__close {
+    grid-column: 3/4;
+    justify-self: end;
+}
+
+.popup__close-btn {
+    border:none;
+    width:2.25rem;
+    height:2.25rem;
+    border-radius: 50%;
+    font-size:1rem;
+    background:var(--light-gray);
+    color:rgb(160, 160, 160);
+    transition:filter 0.25s ease;
+    margin:0.75rem 1rem 0 0;
+}
+
+.popup__close-btn:hover {
+    filter:brightness(0.95);
+    cursor: pointer;
+}
+
 
 /*apply to popup-container class
 when you click the learn more btn*/
