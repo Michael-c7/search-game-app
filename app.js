@@ -11,6 +11,7 @@ let searchInput = document.querySelector(".search-input");
 // variables
 let searchTerm = searchInput.value;
 let currentId = 0;
+
 /*
 documentation
 
@@ -21,16 +22,14 @@ https://rawg.io/
 
 
 /*
-- get search term from the input
-- misc
+TODO
+---
+0.5 general code cleanup
+1. instead of just getting the first video go through each video
+until you get a video
+
+2. center the popup when you scroll down w/ javascript
 */
-
-// get that on click of the search btn
-// searchTerm = searchInput.value
-
-
-
-
 
 
 
@@ -116,18 +115,10 @@ let closePopup = _ => {
 
 
 
-
-
-
-cardList.addEventListener("click", event => {
-    openPopup()
-    // getAdditionalInfo(getCurrentCardId(currentId))
-})
-
-
 let getAdditionalInfo = gameId => {
     // search for a specific game
     // gameId = 19476;
+    // gameId = 4200;
 
     let getInfo = _ => {
         return fetch(`https://api.rawg.io/api/games/${gameId}?key=${apiKey}`)
@@ -153,11 +144,6 @@ let getAdditionalInfo = gameId => {
         return fetch(`https://api.rawg.io/api/games/${gameId}/movies?key=${apiKey}`)
         .then(res => res.json())
         .then(data => {
-
-            /*
-            if data is undefined return a default video
-            */
-
             return {
                 trailer:data.results[0].data.max,
                 name:data.results[0].name,
@@ -228,12 +214,24 @@ let renderPopupInfo = popupInfo => {
 }
 
 
+let setPopupContainerToCenter = _ => {
+    popupContainer.style.top = `${window.pageYOffset}px`;
+}
+
+
+
+
 
 let render = () => {
+    setPopupContainerToCenter()
     renderPopupInfo(getAdditionalInfo(currentId))
 }
 
+
+
+
 cardList.addEventListener("click", event => {
+    openPopup()
     render()
     document.querySelector(".popup__close-btn").addEventListener("click", closePopup)
 })

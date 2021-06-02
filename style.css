@@ -89,8 +89,9 @@ ul {
 }
 
 .popup__info__description {
+    background:#fff;
     margin:0.75rem 0;
-    height:7rem;
+    height:8rem;
     overflow: auto;
 }
 
