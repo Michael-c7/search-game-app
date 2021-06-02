@@ -21,18 +21,6 @@ https://rawg.io/
 */
 
 
-/*
-TODO
----
-0.5 general code cleanup
-1. instead of just getting the first video go through each video
-until you get a video
-
-2. center the popup when you scroll down w/ javascript
-*/
-
-
-
 // get a list of games
 let getListOfGames = _ => {
     return fetch(`https://api.rawg.io/api/games?key=${apiKey}&search="${searchTerm}`)
