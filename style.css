@@ -75,6 +75,7 @@ ul {
 }
 
 .popup__info {
+    position: relative;
     justify-self: center;
     grid-column: 2/3;
     line-height: 1.5;
@@ -96,10 +97,28 @@ ul {
 }
 
 .popup__info__description {
+    position: relative;
     background:#fff;
     margin:0.75rem 0;
     height:8rem;
     overflow: auto;
+    overflow-x: hidden;
+    width:100%;
+}
+
+/*Overflow scroll gradient*/
+.popup__info__description::after {
+    content: '';
+  position: absolute;
+  bottom: 0;
+  left:0;
+  width: inherit;
+  height: 25px;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0.025),
+    white
+  ); /* transparent keyword is broken in Safari */
+  pointer-events: none;
 }
 
 

@@ -186,9 +186,9 @@ let renderPopupInfo = popupInfo => {
         // genres
         document.querySelector(".popup__info__genres").innerHTML = `Genres: ${genres}`;
         // developers
-        document.querySelector(".popup__info__developers").innerHTML = `Developed by: ${developers}`;
+        document.querySelector(".popup__info__developers").innerHTML = `Developed by: ${developers.slice(0,3)}`;
         // platforms
-        document.querySelector(".popup__info__platforms").innerHTML = `Platforms: ${platforms}`;
+        document.querySelector(".popup__info__platforms").innerHTML = `Platforms: ${platforms.slice(0,4)}`;
         // description
         document.querySelector(".popup__info__description").innerHTML = description;
     });
